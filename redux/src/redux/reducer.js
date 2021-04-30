@@ -1,7 +1,7 @@
 import { CHANGE_INPUT , ADD_ITEM ,DETELE_ITEM , GET_LIST} from './actionTypes'
 const defaultState = {
     //初始化state
-    inputValue : 'op',
+    inputValue : '',
     list:[
         'this is first data',
         'this is second data',
