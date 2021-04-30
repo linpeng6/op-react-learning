@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-
+import {change_input_action} from './redux/actions';
+import { ADD_ITEM ,DETELE_ITEM} from './redux/actionTypes'
 export default class App extends Component {
 
     
@@ -17,21 +18,17 @@ export default class App extends Component {
     }
 
     changeValue(e) {
-
-        const action = {
-            type: 'changeInput',
-            data: e.target.value
-        }
-        this.props.store.dispatch(action)
+        //封装action
+        this.props.store.dispatch(change_input_action(e.target.value))
     }
 
     add() {
-        this.props.store.dispatch({ type: 'addItem' })
+        this.props.store.dispatch({ type: ADD_ITEM })
     }
 
     deleteItem(index) {
 
-        this.props.store.dispatch({ type: 'deleteItem', data: index })
+        this.props.store.dispatch({ type: DETELE_ITEM, data: index })
     }
     render() {
         return (
