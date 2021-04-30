@@ -13,6 +13,20 @@ learning about react
 * 事件处理
 * 生命周期
 
-# 2.react-redux
+# 2.redux
 
-# 3.react-router
+* store
+* reducer
+* redux-thunk
+* redux-saga
+# 3.react-redux
+
+* provider
+* connect
+
+# 4.react-router
+
+* Router
+* Route
+* link
+* ...
