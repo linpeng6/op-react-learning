@@ -86,6 +86,33 @@ export const getDataList = () => {
 }
 ```
 
+* 5.redux-saga 中间件
+npm i redux-saga -S
+```javascript
+import createSagaMiddleware from 'redux-saga'   //引入saga
+const sagaMiddleware = createSagaMiddleware();   //创建saga中间件
+sagaMiddleware.run(mySagas);
+```
+
+```javascript
+//sagas.js
+
+//业务逻辑编写
+import { takeEvery,put} from 'redux-sage/effects';
+
+//generator
+function* mySaga(){
+    yield takeEvery('getSagaList', getList)
+}
+
+function* getList(){
+    const res = yield axios.get('/api/xxx');
+    const action = {type:'getList',data:res.data}
+    yield put(action)
+}
+
+export default mySaga
+```
 ## redux调试插件
 react-dev-tools
 ```javascript

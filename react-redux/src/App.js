@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import View from './AppView'
 import { change_input_action } from './redux/actions';
-import { getDataList } from './redux-thunk/actions';
+//import { getDataList } from './redux-thunk/actions';
+//import { getSagaList } from './redux-saga/actions';
 import { ADD_ITEM, DETELE_ITEM } from './redux/actionTypes'
 export default class App extends Component {
 
@@ -20,8 +21,13 @@ export default class App extends Component {
     }
 
     componentDidMount(){
+        //thunk test
         // const action = getDataList()
         // this.props.store.dispatch(action)
+
+        //saga test
+        //const action = getSagaList()
+        //this.props.store.dispatch(action)
     }
 
     changeValue(e) {
