@@ -54,7 +54,37 @@ export default (state = defaultState,action)=>{
     }
 }
 ```
+
+注意：
+store必须唯一
 reducer不能更改state,返回一个新的state
+reducer必须是纯函数
+
+actiontypes,actions封装
+UI和业务逻辑分离,降低耦合
+
+
+
+* 4.redux-thunk 异步中间件
+npm i redux-thunk -D 
+```javascript
+import thunk from 'redux-thunk'
+const store = createStore(reducer,applyMiddleware(thunk))
+
+//componentDidMount
+const action = getDataList()
+this.props.store.dispatch(action)
+
+
+export const getDataList = () => {
+	return dispatch =>{
+		//异步代码
+		setTimeout(()=>{
+			dispatch({type:'getList',data:['1']})
+		},1000)
+	}
+}
+```
 
 ## redux调试插件
 react-dev-tools

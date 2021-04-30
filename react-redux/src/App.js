@@ -1,20 +1,27 @@
 import React, { Component } from 'react'
-import {change_input_action} from './redux/actions';
-import { ADD_ITEM ,DETELE_ITEM} from './redux/actionTypes'
+import View from './AppView'
+import { change_input_action } from './redux/actions';
+import { getDataList } from './redux-thunk/actions';
+import { ADD_ITEM, DETELE_ITEM } from './redux/actionTypes'
 export default class App extends Component {
 
-    
+
     constructor(props) {
         super(props);
 
-        const {store} = props;
+        const { store } = props;
 
         //获取store中的state
         this.state = store.getState();
-        
-        store.subscribe(()=>{ 
+
+        store.subscribe(() => {
             this.setState(store.getState());
         })
+    }
+
+    componentDidMount(){
+        // const action = getDataList()
+        // this.props.store.dispatch(action)
     }
 
     changeValue(e) {
@@ -32,19 +39,13 @@ export default class App extends Component {
     }
     render() {
         return (
-            <div>
-                <input onChange={e => { this.changeValue(e) }} value={this.state.inputValue}/>
-                <button onClick={() => { this.add() }}>增加</button>
-                <ul>
-                    {this.state.list.map((item, index) => {
-                        return (
-                            <li key={index} onClick={() => { this.deleteItem(index) }}>
-                                {item}
-                            </li>
-                        )
-                    })}
-                </ul>
-            </div>
+            <View
+                inputValue={this.state.inputValue}
+                list={this.state.list}
+                changeValue={(e) => { this.changeValue(e) }}
+                add={() => { this.add() }}
+                deleteItem={(index) => this.deleteItem(index)}
+            />
         )
     }
 }

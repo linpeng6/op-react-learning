@@ -1,4 +1,4 @@
-import { CHANGE_INPUT , ADD_ITEM ,DETELE_ITEM} from './actionTypes'
+import { CHANGE_INPUT , ADD_ITEM ,DETELE_ITEM , GET_LIST} from './actionTypes'
 const defaultState = {
     //初始化state
     inputValue : '',
@@ -30,6 +30,12 @@ export default (state = defaultState,action)=>{
             deleteState.list.splice(action.data,1)
             return {
                 ...deleteState
+            }
+
+        case GET_LIST:
+            return {
+                ...state,
+                list:action.data
             }
         default:
             return state
