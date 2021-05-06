@@ -108,3 +108,55 @@ return (
     </div>
 )
 ```
+
+
+## 7.useMemo
+useMemo用于解决子组件重复渲染带来的性能问题。代替class组件的ComponentWillUpdate。
+```javascript
+const func = useMemo(()=>{
+        return getNowTime()
+},[])
+```
+
+## 8.useRef
+1. 获取DOM元素
+2. 保存变量
+```javascript
+const inputEl = useRef(null);
+const onButtonClick = ()=>{
+    // `current` 指向已挂载到 DOM 上的文本输入元素
+    inputEl.current.focus();
+}
+return (
+    <div>
+        <input ref={inputEl} type="text" />
+        <button onClick={onButtonClick}>Focus the input</button>
+    </div>
+)
+```
+
+## 9.自定义hooks函数
+```javascript
+function useWindowSize(){
+    const [size,setSize] = useState({
+        width:document.documentElement.clientWidth,
+        height:document.documentElement.clientHeight,
+    })
+
+    const onResize = useCallback(()=>{
+        setSize({
+            width:document.documentElement.clientWidth,
+            height:document.documentElement.clientHeight,
+        })
+    },[])
+
+    useEffect(()=>{
+        window.addEventListener('resize',onResize);
+        return ()=>{
+            window.removeEventListener('resize',onResize)
+        }
+    },[])
+
+    return size
+}
+```
